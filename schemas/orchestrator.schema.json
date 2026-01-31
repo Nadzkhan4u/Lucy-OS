@@ -1,0 +1,26 @@
+{
+  "$schema_version": "1.0",
+  "$effective_date": "01-Feb-2026",
+  "$owner": "Lucy OS",
+
+  "request_id": "",
+  "request_source": "user|system",
+  "raw_input": "",
+
+  "classified_intent": "planning|lead|finance|compliance|risk|memory|communication",
+  "detected_priority": "P1|P2|P3",
+
+  "assigned_agent": "",
+  "assigned_schema": "",
+
+  "constraints": {
+    "time_limit_minutes": 0,
+    "cost_limit_inr": 0,
+    "write_access": false
+  },
+
+  "status": "routed|blocked|needs_clarification",
+  "decision_notes": "",
+
+  "routed_on": ""
+}
