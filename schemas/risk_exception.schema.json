@@ -1,0 +1,17 @@
+{
+  "$schema_version": "1.0",
+  "$effective_date": "01-Feb-2026",
+  "$owner": "Lucy OS",
+
+  "risk_id": "",
+  "risk_type": "missed_followup|budget_overrun|delay|pattern_anomaly",
+  "severity": "low|medium|high",
+
+  "detected_on": "",
+  "impact_area": "sales|finance|compliance|operations",
+
+  "description": "",
+  "recommended_containment": "",
+
+  "status": "open|contained|resolved"
+}
