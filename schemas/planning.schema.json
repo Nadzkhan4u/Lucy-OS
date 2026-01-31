@@ -1,0 +1,25 @@
+{
+  "$schema_version": "1.0",
+  "$effective_date": "01-Feb-2026",
+  "$owner": "Lucy OS",
+
+  "plan_id": "",
+  "plan_type": "daily|weekly",
+  "date_range": "",
+  "owner": "Nadeem Ahmed",
+
+  "tasks": [
+    {
+      "task_id": "",
+      "title": "",
+      "time_block": "",
+      "priority": "P1|P2|P3",
+      "dependency": "",
+      "buffer_minutes": 15,
+      "expected_outcome": "",
+      "status": "planned"
+    }
+  ],
+
+  "assumptions": []
+}
