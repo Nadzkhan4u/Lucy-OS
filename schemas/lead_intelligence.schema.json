@@ -1,0 +1,21 @@
+{
+  "$schema_version": "1.0",
+  "$effective_date": "01-Feb-2026",
+  "$owner": "Lucy OS",
+
+  "lead_id": "",
+  "client_name": "",
+  "source": "call|whatsapp|instagram|referral|walk-in",
+
+  "budget_range": "",
+  "timeline_days": 0,
+  "intent_score": 1,
+
+  "category": "hot|warm|cold|dead",
+
+  "next_action": "call|site_visit|follow_up|drop",
+  "next_action_due": "",
+
+  "disqualification_reason": "",
+  "notes": ""
+}
