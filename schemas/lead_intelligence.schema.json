@@ -1,21 +1,54 @@
 {
-  "$schema_version": "1.0",
-  "$effective_date": "01-Feb-2026",
-  "$owner": "Lucy OS",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Lead Intelligence and Qualification Schema",
+  "type": "object",
 
-  "lead_id": "",
-  "client_name": "",
-  "source": "call|whatsapp|instagram|referral|walk-in",
+  "properties": {
+    "lead_id": {
+      "type": "string"
+    },
+    "client_name": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string",
+      "enum": ["call", "whatsapp", "instagram", "referral", "walk-in"]
+    },
+    "budget_range": {
+      "type": "string"
+    },
+    "timeline_days": {
+      "type": "number"
+    },
+    "intent_score": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "category": {
+      "type": "string",
+      "enum": ["hot", "warm", "cold", "dead"]
+    },
+    "next_action": {
+      "type": "string",
+      "enum": ["call", "site_visit", "follow_up", "drop"]
+    },
+    "next_action_due": {
+      "type": "string"
+    },
+    "disqualification_reason": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
 
-  "budget_range": "",
-  "timeline_days": 0,
-  "intent_score": 1,
-
-  "category": "hot|warm|cold|dead",
-
-  "next_action": "call|site_visit|follow_up|drop",
-  "next_action_due": "",
-
-  "disqualification_reason": "",
-  "notes": ""
+  "required": [
+    "lead_id",
+    "source",
+    "intent_score",
+    "category",
+    "next_action"
+  ]
 }

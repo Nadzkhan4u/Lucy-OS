@@ -1,17 +1,50 @@
 {
-  "$schema_version": "1.0",
-  "$effective_date": "01-Feb-2026",
-  "$owner": "Lucy OS",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Knowledge and Memory Schema",
+  "type": "object",
 
-  "memory_id": "",
-  "memory_type": "decision|template|client_preference|pricing_logic",
+  "properties": {
+    "memory_id": {
+      "type": "string"
+    },
+    "memory_type": {
+      "type": "string",
+      "enum": [
+        "decision",
+        "template",
+        "client_preference",
+        "pricing_logic"
+      ]
+    },
+    "summary": {
+      "type": "string"
+    },
+    "details": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string",
+      "enum": ["manual", "agent"]
+    },
+    "created_on": {
+      "type": "string"
+    },
+    "retrieval_tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "write_protected": {
+      "type": "boolean"
+    }
+  },
 
-  "summary": "",
-  "details": "",
-
-  "source": "manual|agent",
-  "created_on": "",
-
-  "retrieval_tags": [],
-  "write_protected": true
+  "required": [
+    "memory_id",
+    "memory_type",
+    "summary",
+    "source",
+    "write_protected"
+  ]
 }

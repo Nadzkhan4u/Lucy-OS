@@ -1,15 +1,47 @@
 {
-  "$schema_version": "1.0",
-  "$effective_date": "01-Feb-2026",
-  "$owner": "Lucy OS",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Finance Log Schema",
+  "type": "object",
 
-  "transaction_id": "",
-  "type": "expense",
-  "timestamp": "",
-  "amount": 0,
-  "currency": "INR",
-  "category": "",
-  "mode": "",
-  "note": "",
-  "verified": false
+  "properties": {
+    "transaction_id": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["expense", "income"]
+    },
+    "timestamp": {
+      "type": "string"
+    },
+    "amount": {
+      "type": "number"
+    },
+    "currency": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "mode": {
+      "type": "string"
+    },
+    "note": {
+      "type": "string"
+    },
+    "verified": {
+      "type": "boolean"
+    }
+  },
+
+  "required": [
+    "transaction_id",
+    "type",
+    "timestamp",
+    "amount",
+    "currency",
+    "category",
+    "mode",
+    "verified"
+  ]
 }

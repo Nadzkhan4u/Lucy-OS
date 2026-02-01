@@ -1,26 +1,76 @@
 {
-  "$schema_version": "1.0",
-  "$effective_date": "01-Feb-2026",
-  "$owner": "Lucy OS",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Orchestrator Control Schema",
+  "type": "object",
 
-  "request_id": "",
-  "request_source": "user|system",
-  "raw_input": "",
-
-  "classified_intent": "planning|lead|finance|compliance|risk|memory|communication",
-  "detected_priority": "P1|P2|P3",
-
-  "assigned_agent": "",
-  "assigned_schema": "",
-
-  "constraints": {
-    "time_limit_minutes": 0,
-    "cost_limit_inr": 0,
-    "write_access": false
+  "properties": {
+    "request_id": {
+      "type": "string"
+    },
+    "request_source": {
+      "type": "string",
+      "enum": ["user", "system"]
+    },
+    "raw_input": {
+      "type": "string"
+    },
+    "classified_intent": {
+      "type": "string",
+      "enum": [
+        "planning",
+        "lead",
+        "finance",
+        "compliance",
+        "risk",
+        "memory",
+        "communication"
+      ]
+    },
+    "detected_priority": {
+      "type": "string",
+      "enum": ["P1", "P2", "P3"]
+    },
+    "assigned_agent": {
+      "type": "string"
+    },
+    "assigned_schema": {
+      "type": "string"
+    },
+    "constraints": {
+      "type": "object",
+      "properties": {
+        "time_limit_minutes": {
+          "type": "number"
+        },
+        "cost_limit_inr": {
+          "type": "number"
+        },
+        "write_access": {
+          "type": "boolean"
+        }
+      },
+      "required": ["write_access"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["routed", "blocked", "needs_clarification"]
+    },
+    "decision_notes": {
+      "type": "string"
+    },
+    "routed_on": {
+      "type": "string"
+    }
   },
 
-  "status": "routed|blocked|needs_clarification",
-  "decision_notes": "",
-
-  "routed_on": ""
+  "required": [
+    "request_id",
+    "request_source",
+    "classified_intent",
+    "detected_priority",
+    "assigned_agent",
+    "assigned_schema",
+    "constraints",
+    "status"
+  ]
 }

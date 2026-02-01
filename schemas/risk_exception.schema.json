@@ -1,17 +1,49 @@
 {
-  "$schema_version": "1.0",
-  "$effective_date": "01-Feb-2026",
-  "$owner": "Lucy OS",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Risk and Exception Monitoring Schema",
+  "type": "object",
 
-  "risk_id": "",
-  "risk_type": "missed_followup|budget_overrun|delay|pattern_anomaly",
-  "severity": "low|medium|high",
+  "properties": {
+    "risk_id": {
+      "type": "string"
+    },
+    "risk_type": {
+      "type": "string",
+      "enum": [
+        "missed_followup",
+        "budget_overrun",
+        "delay",
+        "pattern_anomaly"
+      ]
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["low", "medium", "high"]
+    },
+    "detected_on": {
+      "type": "string"
+    },
+    "impact_area": {
+      "type": "string",
+      "enum": ["sales", "finance", "compliance", "operations"]
+    },
+    "description": {
+      "type": "string"
+    },
+    "recommended_containment": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["open", "contained", "resolved"]
+    }
+  },
 
-  "detected_on": "",
-  "impact_area": "sales|finance|compliance|operations",
-
-  "description": "",
-  "recommended_containment": "",
-
-  "status": "open|contained|resolved"
+  "required": [
+    "risk_id",
+    "risk_type",
+    "severity",
+    "impact_area",
+    "status"
+  ]
 }

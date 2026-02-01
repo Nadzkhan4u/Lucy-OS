@@ -1,25 +1,37 @@
 {
-  "$schema_version": "1.0",
-  "$effective_date": "01-Feb-2026",
-  "$owner": "Lucy OS",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Daily or Weekly Planning Schema",
+  "type": "object",
 
-  "plan_id": "",
-  "plan_type": "daily|weekly",
-  "date_range": "",
-  "owner": "Nadeem Ahmed",
+  "properties": {
+    "plan_id": { "type": "string" },
+    "plan_type": { "type": "string", "enum": ["daily", "weekly"] },
+    "date_range": { "type": "string" },
+    "owner": { "type": "string" },
 
-  "tasks": [
-    {
-      "task_id": "",
-      "title": "",
-      "time_block": "",
-      "priority": "P1|P2|P3",
-      "dependency": "",
-      "buffer_minutes": 15,
-      "expected_outcome": "",
-      "status": "planned"
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "task_id": { "type": "string" },
+          "title": { "type": "string" },
+          "time_block": { "type": "string" },
+          "priority": { "type": "string", "enum": ["P1", "P2", "P3"] },
+          "dependency": { "type": "string" },
+          "buffer_minutes": { "type": "number" },
+          "expected_outcome": { "type": "string" },
+          "status": { "type": "string", "enum": ["planned", "done", "deferred"] }
+        },
+        "required": ["task_id", "title", "time_block", "priority", "status"]
+      }
+    },
+
+    "assumptions": {
+      "type": "array",
+      "items": { "type": "string" }
     }
-  ],
+  },
 
-  "assumptions": []
+  "required": ["plan_id", "plan_type", "date_range", "owner", "tasks"]
 }

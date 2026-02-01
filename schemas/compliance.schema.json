@@ -1,24 +1,59 @@
 {
-  "$schema_version": "1.0",
-  "$effective_date": "01-Feb-2026",
-  "$owner": "Lucy OS",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Compliance and Documentation Schema",
+  "type": "object",
 
-  "project_id": "",
-  "project_name": "",
-
-  "approval_type": "GP|DTCP|BDA|NA",
-  "jurisdiction": "Karnataka",
-
-  "documents": [
-    {
-      "document_name": "",
-      "status": "available|pending|missing"
+  "properties": {
+    "project_id": {
+      "type": "string"
+    },
+    "project_name": {
+      "type": "string"
+    },
+    "approval_type": {
+      "type": "string",
+      "enum": ["GP", "DTCP", "BDA", "NA"]
+    },
+    "jurisdiction": {
+      "type": "string"
+    },
+    "documents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "document_name": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["available", "pending", "missing"]
+          }
+        },
+        "required": ["document_name", "status"]
+      }
+    },
+    "compliance_status": {
+      "type": "string",
+      "enum": ["safe", "warning", "blocked"]
+    },
+    "risk_summary": {
+      "type": "string"
+    },
+    "registration_ready": {
+      "type": "boolean"
+    },
+    "last_reviewed_on": {
+      "type": "string"
     }
-  ],
+  },
 
-  "compliance_status": "safe|warning|blocked",
-  "risk_summary": "",
-
-  "registration_ready": false,
-  "last_reviewed_on": ""
+  "required": [
+    "project_id",
+    "project_name",
+    "approval_type",
+    "documents",
+    "compliance_status",
+    "registration_ready"
+  ]
 }
