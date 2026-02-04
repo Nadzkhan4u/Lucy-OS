@@ -20,3 +20,12 @@ def update_task_status(task_id, new_status):
             return True, f"Task {task_id} updated to {new_status}"
 
     return False, f"Task {task_id} not found"
+
+# Lead state (temporary in-memory store)
+LEADS = []
+
+def add_lead(lead):
+    LEADS.append(lead)
+
+def get_leads():
+    return LEADS

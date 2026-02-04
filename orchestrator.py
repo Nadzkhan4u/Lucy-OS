@@ -31,6 +31,12 @@ def route_request(request):
         "schema": None
     }
 
+    if intent == "lead":
+        return {
+        "agent": "lead_intelligence_agent",
+        "schema": "schemas/lead_intelligence.schema.json"
+    }
+
     return {
         "agent": None,
         "schema": None
