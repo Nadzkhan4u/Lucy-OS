@@ -24,6 +24,12 @@ def route_request(request):
             "agent": "daily_digest_agent",
             "schema": "schemas/daily_digest.schema.json"
         }
+    
+    if intent == "task_update":
+        return {
+        "agent": "task_update_agent",
+        "schema": None
+    }
 
     return {
         "agent": None,

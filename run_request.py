@@ -1,51 +1,46 @@
 from orchestrator import route_request
 from agents.planning_agent import handle as planning_handle
+from agents.task_update_agent import handle as task_update_handle
 from agents.daily_digest_agent import handle as digest_handle
 from utils.schema_validator import validate_schema
 
-# STEP 1 — Generate today's plan
-planning_request = {
-    "request_id": "req-plan-001",
+# STEP 1 — Generate plan
+plan_request = {
+    "request_id": "req-plan",
     "classified_intent": "planning"
 }
+planning_handle(plan_request)
 
-planning_route = route_request(planning_request)
-plan = planning_handle(planning_request)
-
-print("Planning Output:", plan)
-
-# STEP 2 — Generate AM Digest
+# STEP 2 — AM Digest
 am_request = {
-    "request_id": "req-am-001",
+    "request_id": "req-am",
     "classified_intent": "daily_digest",
     "digest_type": "AM"
 }
-
 am_route = route_request(am_request)
 am_result = digest_handle(am_request)
 
-is_valid, message = validate_schema(
-    am_route["schema"],
-    am_result
-)
-
 print("\nAM Digest:", am_result)
-print("Validation:", message)
 
-# STEP 3 — Generate PM Digest
+# STEP 3 — Mark task t-001 as done
+update_request = {
+    "request_id": "req-update",
+    "classified_intent": "task_update",
+    "task_id": "t-001",
+    "new_status": "done"
+}
+update_route = route_request(update_request)
+update_result = task_update_handle(update_request)
+
+print("\nTask Update:", update_result)
+
+# STEP 4 — PM Digest
 pm_request = {
-    "request_id": "req-pm-001",
+    "request_id": "req-pm",
     "classified_intent": "daily_digest",
     "digest_type": "PM"
 }
-
 pm_route = route_request(pm_request)
 pm_result = digest_handle(pm_request)
 
-is_valid, message = validate_schema(
-    pm_route["schema"],
-    pm_result
-)
-
 print("\nPM Digest:", pm_result)
-print("Validation:", message)

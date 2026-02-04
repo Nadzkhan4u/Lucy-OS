@@ -1,25 +1,27 @@
-from state import CURRENT_PLAN
+from state import get_plan
 
 def handle(request):
-    if CURRENT_PLAN is None:
+    plan = get_plan()
+    digest_type = request.get("digest_type")
+
+    if plan is None:
         return {
-            "digest_type": request.get("digest_type"),
+            "digest_type": digest_type,
             "date": "03-Feb-2026",
-            "notes": "No plan available for today."
+            "notes": "No active plan found."
         }
 
-    tasks = CURRENT_PLAN.get("tasks", [])
-    digest_type = request.get("digest_type")
+    tasks = plan.get("tasks", [])
 
     if digest_type == "AM":
         return {
             "digest_type": "AM",
-            "date": CURRENT_PLAN.get("date_range"),
-            "top_focus": [task["title"] for task in tasks[:3]],
+            "date": plan.get("date_range"),
+            "top_focus": [t["title"] for t in tasks if t["priority"] == "P1"],
             "schedule_blocks": [
-                f'{task["time_block"]} {task["title"]}' for task in tasks
+                f'{t["time_block"]} {t["title"]}' for t in tasks
             ],
-            "notes": "Day planned from active schedule."
+            "notes": "Day briefing generated from active plan."
         }
 
     if digest_type == "PM":
@@ -28,10 +30,10 @@ def handle(request):
 
         return {
             "digest_type": "PM",
-            "date": CURRENT_PLAN.get("date_range"),
+            "date": plan.get("date_range"),
             "completed": completed,
             "pending": pending,
-            "notes": "End-of-day summary generated from plan."
+            "notes": "End-of-day wrap based on actual execution."
         }
 
     return None

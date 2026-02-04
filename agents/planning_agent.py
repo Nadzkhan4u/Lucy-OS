@@ -1,10 +1,6 @@
-from state import CURRENT_PLAN
+from state import set_plan
 
 def handle(request):
-    """
-    Deterministic planning agent.
-    No AI. No guessing. Fixed structure.
-    """
     plan = {
         "plan_id": "plan-demo-001",
         "plan_type": "daily",
@@ -40,8 +36,5 @@ def handle(request):
         ]
     }
 
-    # publish plan to shared state
-    global CURRENT_PLAN
-    CURRENT_PLAN = plan
-
+    set_plan(plan)
     return plan
