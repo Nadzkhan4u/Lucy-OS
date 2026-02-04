@@ -43,6 +43,12 @@ def route_request(request):
         "schema": None
     }
 
+    if intent == "lead_aging":
+        return {
+        "agent": "lead_aging_agent",
+        "schema": None
+    }
+
     return {
         "agent": None,
         "schema": None

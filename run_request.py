@@ -5,6 +5,7 @@ from agents.task_update_agent import handle as task_update_handle
 from agents.daily_digest_agent import handle as digest_handle
 from utils.schema_validator import validate_schema
 from agents.weekly_planning_agent import handle as weekly_handle
+from agents.lead_aging_agent import handle as lead_aging_handle
 
 # STEP 1 — Create today's plan
 planning_handle({
@@ -79,3 +80,17 @@ for t in weekly_result["rollover_tasks"]:
 print("\nRevenue Focus:")
 for r in weekly_result["revenue_focus"]:
     print("-", r)
+
+# STEP — Lead Aging & Escalation
+aging_request = {
+    "request_id": "req-aging",
+    "classified_intent": "lead_aging"
+}
+
+aging_result = lead_aging_handle(aging_request)
+
+print("\nLEAD AGING RESULT:")
+print("Checked Date:", aging_result["checked_date"])
+print("Escalations:")
+for e in aging_result["escalations"]:
+    print("-", e)
