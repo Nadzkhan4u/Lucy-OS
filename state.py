@@ -49,3 +49,11 @@ def add_lead(lead):
 
 def get_leads():
     return _read_json(LEADS_FILE, [])
+
+WEEKLY_PLAN_FILE = os.path.join(DATA_DIR, "weekly_plan.json")
+
+def set_weekly_plan(plan):
+    _write_json(WEEKLY_PLAN_FILE, plan)
+
+def get_weekly_plan():
+    return _read_json(WEEKLY_PLAN_FILE, {})

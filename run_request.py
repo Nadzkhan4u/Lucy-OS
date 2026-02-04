@@ -4,6 +4,7 @@ from agents.lead_intelligence_agent import handle as lead_handle
 from agents.task_update_agent import handle as task_update_handle
 from agents.daily_digest_agent import handle as digest_handle
 from utils.schema_validator import validate_schema
+from agents.weekly_planning_agent import handle as weekly_handle
 
 # STEP 1 — Create today's plan
 planning_handle({
@@ -56,3 +57,25 @@ pm_route = route_request(pm_request)
 pm_result = digest_handle(pm_request)
 
 print("\nPM Digest:", pm_result)
+
+# STEP 5 — Weekly Planning
+weekly_request = {
+    "request_id": "req-weekly",
+    "classified_intent": "weekly_planning"
+}
+
+weekly_result = weekly_handle(weekly_request)
+
+print("\nWEEKLY PLAN:")
+print("Week:", weekly_result["week_start"], "to", weekly_result["week_end"])
+print("Top 5 Goals:")
+for g in weekly_result["top_5_goals"]:
+    print("-", g)
+
+print("\nRollover Tasks:")
+for t in weekly_result["rollover_tasks"]:
+    print("-", t)
+
+print("\nRevenue Focus:")
+for r in weekly_result["revenue_focus"]:
+    print("-", r)

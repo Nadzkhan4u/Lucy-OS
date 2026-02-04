@@ -37,6 +37,12 @@ def route_request(request):
         "schema": "schemas/lead_intelligence.schema.json"
     }
 
+    if intent == "weekly_planning":
+        return {
+        "agent": "weekly_planning_agent",
+        "schema": None
+    }
+
     return {
         "agent": None,
         "schema": None
