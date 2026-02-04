@@ -1,31 +1,51 @@
-# Shared in-memory state (temporary)
-# Later replace with DB or file persistence
+import json
+import os
 
-CURRENT_PLAN = None
+DATA_DIR = "data"
+PLAN_FILE = os.path.join(DATA_DIR, "plan.json")
+LEADS_FILE = os.path.join(DATA_DIR, "leads.json")
+
+# ---------- Utility ----------
+
+def _read_json(path, default):
+    if not os.path.exists(path):
+        return default
+    with open(path, "r") as f:
+        return json.load(f)
+
+def _write_json(path, data):
+    with open(path, "w") as f:
+        json.dump(data, f, indent=2)
+
+# ---------- Plan Persistence ----------
 
 def set_plan(plan):
-    global CURRENT_PLAN
-    CURRENT_PLAN = plan
+    _write_json(PLAN_FILE, plan)
 
 def get_plan():
-    return CURRENT_PLAN
+    return _read_json(PLAN_FILE, {})
+
+# ---------- Task Updates ----------
 
 def update_task_status(task_id, new_status):
-    if CURRENT_PLAN is None:
+    plan = get_plan()
+    if not plan:
         return False, "No active plan"
 
-    for task in CURRENT_PLAN.get("tasks", []):
+    for task in plan.get("tasks", []):
         if task["task_id"] == task_id:
             task["status"] = new_status
+            set_plan(plan)
             return True, f"Task {task_id} updated to {new_status}"
 
     return False, f"Task {task_id} not found"
 
-# Lead state (temporary in-memory store)
-LEADS = []
+# ---------- Lead Persistence ----------
 
 def add_lead(lead):
-    LEADS.append(lead)
+    leads = _read_json(LEADS_FILE, [])
+    leads.append(lead)
+    _write_json(LEADS_FILE, leads)
 
 def get_leads():
-    return LEADS
+    return _read_json(LEADS_FILE, [])
