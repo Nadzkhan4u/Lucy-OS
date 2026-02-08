@@ -1,15 +1,16 @@
 {
-  "week_start": "2026-02-05",
-  "week_end": "2026-02-11",
+  "week_start": "2026-02-08",
+  "week_end": "2026-02-14",
   "top_5_goals": [
+    "Resolve escalated and stalled hot leads",
     "Close hot leads",
     "Advance warm leads",
-    "Complete carried-forward tasks",
-    "Maintain daily follow-ups",
-    "Review pipeline health"
+    "Clear rollover tasks",
+    "Maintain pipeline hygiene"
   ],
   "rollover_tasks": [
     "Daily admin & review",
+    "Site visit \u2013 Ramesh",
     "Site visit \u2013 Ramesh",
     "Site visit \u2013 Ramesh",
     "Site visit \u2013 Ramesh",
@@ -20,15 +21,17 @@
     "HOT \u2013 Ramesh",
     "HOT \u2013 Ramesh",
     "HOT \u2013 Ramesh",
+    "HOT \u2013 Ramesh",
     "HOT \u2013 Ramesh"
   ],
+  "escalation_focus": [],
   "daily_outline": {
-    "2026-02-05": "Revenue + execution blocks",
-    "2026-02-06": "Revenue + execution blocks",
-    "2026-02-07": "Revenue + execution blocks",
     "2026-02-08": "Revenue + execution blocks",
     "2026-02-09": "Revenue + execution blocks",
     "2026-02-10": "Revenue + execution blocks",
-    "2026-02-11": "Revenue + execution blocks"
+    "2026-02-11": "Revenue + execution blocks",
+    "2026-02-12": "Revenue + execution blocks",
+    "2026-02-13": "Revenue + execution blocks",
+    "2026-02-14": "Revenue + execution blocks"
   }
 }
